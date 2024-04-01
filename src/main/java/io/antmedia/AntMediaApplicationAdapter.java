@@ -1,5 +1,6 @@
 package io.antmedia;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -656,7 +657,7 @@ public class AntMediaApplicationAdapter implements IAntMediaStreamHandler, IShut
 		vertx.executeBlocking(future -> {
 			try {
 				logger.info("running muxer finish script: {}", scriptFile);
-				Process exec = Runtime.getRuntime().exec(scriptFile);
+				Process exec = SystemCommand.runCommand(Runtime.getRuntime(), scriptFile);
 				int result = exec.waitFor();
 				future.complete();
 				logger.info("completing script: {} with return value {}", scriptFile, result);
