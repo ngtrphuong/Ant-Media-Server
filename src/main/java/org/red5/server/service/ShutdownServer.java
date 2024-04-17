@@ -18,6 +18,7 @@
 
 package org.red5.server.service;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -175,7 +176,7 @@ public class ShutdownServer implements ApplicationContextAware, InitializingBean
                     BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                  ) {
                 log.info("Connected - local: {} remote: {}", clientSocket.getLocalSocketAddress(), clientSocket.getRemoteSocketAddress());
-                String inputLine = in.readLine();
+                String inputLine = BoundedLineReader.readLine(in, 5_000_000);
                 if (inputLine != null && token.equals(inputLine)) {
                     log.info("Shutdown request validated using token");
                     shutdownOrderly();
