@@ -1,5 +1,7 @@
 package io.antmedia.ipcamera.onvifdiscovery;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.IOException;
 import java.net.BindException;
@@ -65,7 +67,7 @@ public class DeviceDiscovery {
 		final Collection<URL> urls = new TreeSet<>(new URLComparator());
 		for (String key : discoverWsDevices(probeMsgTemplate, useIpv4, targetAddresses)) {
 			try {
-				final URL url = new URL(key);
+				final URL url = Urls.create(key, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 				boolean ok = true;
 				if (!regexpProtocol.isEmpty() && !url.getProtocol().matches(regexpProtocol))
 					ok = false;
