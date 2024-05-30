@@ -1045,13 +1045,13 @@ public class BroadcastRestService extends RestServiceBase{
 				movement = RELATIVE_MOVE;
 			}
 			
-			if (movement.equals(RELATIVE_MOVE)) {
+			if (RELATIVE_MOVE.equals(movement)) {
 				result = super.moveRelative(id, valueX, valueY, valueZ);
 			}
-			else if (movement.equals(CONTINUOUS_MOVE)) {
+			else if (CONTINUOUS_MOVE.equals(movement)) {
 				result = super.moveContinous(id, valueX, valueY, valueZ);
 			}
-			else if (movement.equals(ABSOLUTE_MOVE)) {
+			else if (ABSOLUTE_MOVE.equals(movement)) {
 				result = super.moveAbsolute(id, valueX, valueY, valueZ);
 			}
 			else  {

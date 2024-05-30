@@ -67,7 +67,7 @@ public class MappingStrategy implements IMappingStrategy {
      * @return Resource prefix according to this naming strategy
      */
     public String mapResourcePrefix(String path) {
-        if (path == null || path.equals(ROOT)) {
+        if (path == null || ROOT.equals(path)) {
             return defaultApp + DIR;
         } else {
             return path + DIR;
@@ -82,7 +82,7 @@ public class MappingStrategy implements IMappingStrategy {
      * @return Scope handler name according to this naming strategy
      */
     public String mapScopeHandlerName(String path) {
-        if (path == null || path.equals(ROOT)) {
+        if (path == null || ROOT.equals(path)) {
             return defaultApp + HANDLER;
         } else {
             return path + HANDLER;
