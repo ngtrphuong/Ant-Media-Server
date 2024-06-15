@@ -19,6 +19,7 @@
 
 package org.red5.server.session;
 
+import java.security.SecureRandom;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -53,7 +54,7 @@ public class SessionManager {
     private static ISchedulingService schedulingService;
 
     // Create a random generator
-    public static final Random rnd = new Random();
+    public static final Random rnd = new SecureRandom();
 
     public void init() {
         if (schedulingService != null) {
