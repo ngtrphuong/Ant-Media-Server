@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import java.security.SecureRandom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -1833,7 +1834,7 @@ public class RestServiceV2Test {
 
 			result = ConsoleAppRestServiceTest.authenticateDefaultUser();
 			assertTrue(result.isSuccess());
-			Random r = new Random();
+			Random r = new SecureRandom();
 			String streamId = "streamId" + r.nextInt();
 
 			AppSettings appSettingsModel = ConsoleAppRestServiceTest.callGetAppSettings("LiveApp");
