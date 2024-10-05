@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.SystemCommand;
 import static org.bytedeco.ffmpeg.global.avformat.av_read_frame;
 import static org.bytedeco.ffmpeg.global.avformat.av_register_all;
 import static org.bytedeco.ffmpeg.global.avformat.avformat_close_input;
@@ -668,7 +669,7 @@ public class MuxingTest {
 			public void run() {
 				try {
 
-					tmpExec = Runtime.getRuntime().exec(command);
+					tmpExec = SystemCommand.runCommand(Runtime.getRuntime(), command);
 					InputStream errorStream = tmpExec.getErrorStream();
 					byte[] data = new byte[1024];
 					int length = 0;
@@ -738,7 +739,7 @@ public class MuxingTest {
 		// String path = "./red5-shutdown.sh" ;
 		String path = "src/test/resources/kill_red5.sh";
 		try {
-			Process exec = Runtime.getRuntime().exec(path, null, null); // new
+			Process exec = SystemCommand.runCommand(Runtime.getRuntime(), path, null, null); // new
 																		// String[]
 																		// {"cd
 																		// red5;
