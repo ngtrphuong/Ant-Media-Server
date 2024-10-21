@@ -1,5 +1,6 @@
 package io.antmedia.test;
 
+import io.github.pixee.security.BoundedLineReader;
 import static org.bytedeco.ffmpeg.global.avutil.AVMEDIA_TYPE_DATA;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -964,12 +965,12 @@ public class StreamFetcherUnitTest extends AbstractJUnit4SpringContextTests {
 			BufferedReader br = new BufferedReader(new FileReader("webapps/junit/streams/"+newCam.getStreamId() +".m3u8"));
 			try {
 				StringBuilder sb = new StringBuilder();
-				String line = br.readLine();
+				String line = BoundedLineReader.readLine(br, 5_000_000);
 
 				while (line != null) {
 					sb.append(line);
 					//  sb.append(System.lineSeparator());
-					line = br.readLine();
+					line = BoundedLineReader.readLine(br, 5_000_000);
 				}
 				textInFile = sb.toString();
 

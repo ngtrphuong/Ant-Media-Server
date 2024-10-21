@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.BoundedLineReader;
 import static org.bytedeco.ffmpeg.global.avformat.av_register_all;
 import static org.bytedeco.ffmpeg.global.avformat.avformat_network_init;
 import static org.junit.Assert.assertEquals;
@@ -2054,7 +2055,7 @@ public class ConsoleAppRestServiceTest{
 
 		StringBuffer result = new StringBuffer();
 		String line = "";
-		while ((line = rd.readLine()) != null) {
+		while ((line = BoundedLineReader.readLine(rd, 5_000_000)) != null) {
 			result.append(line);
 		}
 		return result;
