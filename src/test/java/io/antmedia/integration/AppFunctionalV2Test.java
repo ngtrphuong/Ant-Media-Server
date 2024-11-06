@@ -1,5 +1,7 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.bytedeco.ffmpeg.global.avformat.av_register_all;
 import static org.bytedeco.ffmpeg.global.avformat.avformat_network_init;
 import static org.junit.Assert.assertEquals;
@@ -1154,7 +1156,7 @@ public class AppFunctionalV2Test {
 			HttpURLConnection.setFollowRedirects(followRedirects);
 			// note : you may also need
 			// HttpURLConnection.setInstanceFollowRedirects(false)
-			HttpURLConnection con = (HttpURLConnection) new URL(URLName).openConnection();
+			HttpURLConnection con = (HttpURLConnection) Urls.create(URLName, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
 			con.setRequestMethod("HEAD");
 			return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
 		} catch (Exception e) {

@@ -1,5 +1,7 @@
 package io.antmedia.rest;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -1890,7 +1892,7 @@ public abstract class RestServiceBase {
 			    "/META-INF/MANIFEST.MF"; 
 			
 			try {
-				url = new URL(manifestPath);
+				url = Urls.create(manifestPath, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 			} catch (MalformedURLException e) {
 				logger.error(e.getMessage());
 			}

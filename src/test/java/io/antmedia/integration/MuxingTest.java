@@ -1,5 +1,7 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.bytedeco.ffmpeg.global.avformat.av_read_frame;
 import static org.bytedeco.ffmpeg.global.avformat.av_register_all;
 import static org.bytedeco.ffmpeg.global.avformat.avformat_close_input;
@@ -796,7 +798,7 @@ public class MuxingTest {
 	public static boolean isURLAvailable(String address) {
 		try {
 
-			URL url = new URL(address);
+			URL url = Urls.create(address, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setReadTimeout(10000);
 			urlConnection.setConnectTimeout(45000);
@@ -822,7 +824,7 @@ public class MuxingTest {
 	public static byte[] getByteArray(String address) {
 		try {
 
-			URL url = new URL(address);
+			URL url = Urls.create(address, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setReadTimeout(10000);
 			urlConnection.setConnectTimeout(45000);
