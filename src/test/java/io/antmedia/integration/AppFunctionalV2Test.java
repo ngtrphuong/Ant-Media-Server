@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import java.security.SecureRandom;
 import static org.bytedeco.ffmpeg.global.avformat.av_register_all;
 import static org.bytedeco.ffmpeg.global.avformat.avformat_network_init;
 import static org.junit.Assert.assertEquals;
@@ -418,7 +419,7 @@ public class AppFunctionalV2Test {
 			
 			result = ConsoleAppRestServiceTest.authenticateDefaultUser();
 			assertTrue(result.isSuccess());
-			Random r = new Random();
+			Random r = new SecureRandom();
 			String streamId = "streamId" + r.nextInt();
 
 			AppSettings appSettingsModel = ConsoleAppRestServiceTest.callGetAppSettings("LiveApp");
@@ -852,7 +853,7 @@ public class AppFunctionalV2Test {
 		
 		RestServiceV2Test restService = new RestServiceV2Test();
 		
-		Random r = new Random();
+		Random r = new SecureRandom();
 		String streamId = "streamId" + r.nextInt();
 		
 		Broadcast stream=restService.createBroadcast(streamId);

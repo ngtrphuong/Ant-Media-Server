@@ -1,5 +1,6 @@
 package io.antmedia.test.db;
 
+import java.security.SecureRandom;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -1810,7 +1811,7 @@ public class DBStoresUnitTest {
 		//define a valid expire date
 		long expireDate = Instant.now().getEpochSecond() + 1000;
 
-		Random r = new Random();
+		Random r = new SecureRandom();
 		String streamId = "streamId" + r.nextInt();
 		testToken.setStreamId(streamId);
 		testToken.setExpireDate(expireDate);
