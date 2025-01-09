@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.SystemCommand;
 import static org.bytedeco.ffmpeg.global.avformat.av_register_all;
 import static org.bytedeco.ffmpeg.global.avformat.avformat_network_init;
 import static org.junit.Assert.assertEquals;
@@ -2065,7 +2066,7 @@ public class ConsoleAppRestServiceTest{
 			public void run() {
 				try {
 
-					tmpExec = Runtime.getRuntime().exec(command);
+					tmpExec = SystemCommand.runCommand(Runtime.getRuntime(), command);
 					InputStream errorStream = tmpExec.getErrorStream();
 					byte[] data = new byte[1024];
 					int length = 0;

@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.SystemCommand;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -1422,7 +1423,7 @@ public class RestServiceV2Test {
 			public void run() {
 				try {
 
-					tmpExec = Runtime.getRuntime().exec(command);
+					tmpExec = SystemCommand.runCommand(Runtime.getRuntime(), command);
 					InputStream errorStream = tmpExec.getErrorStream();
 					byte[] data = new byte[1024];
 					int length = 0;

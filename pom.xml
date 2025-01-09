@@ -69,8 +69,8 @@
         <finalName>${project.artifactId}</finalName>
         <maven.build.timestamp.format>yyyyMMdd_HHmm</maven.build.timestamp.format>
         <buildNumber>${maven.build.timestamp}</buildNumber>
-
-    </properties>
+  <versions.java-security-toolkit>1.2.1</versions.java-security-toolkit>
+ </properties>
 
     <build>
         <defaultGoal>install</defaultGoal>
@@ -565,7 +565,11 @@
     		<version>0.11.2</version>
     		<scope>provided</scope>
 		</dependency>
-    </dependencies>
+  <dependency>
+   <groupId>io.github.pixee</groupId>
+   <artifactId>java-security-toolkit</artifactId>
+  </dependency>
+ </dependencies>
     <profiles>
         <profile>
             <id>assemble</id>
@@ -1000,6 +1004,13 @@
             </build>
         </profile>
     </profiles>
-
-
+ <dependencyManagement>
+  <dependencies>
+   <dependency>
+    <groupId>io.github.pixee</groupId>
+    <artifactId>java-security-toolkit</artifactId>
+    <version>${versions.java-security-toolkit}</version>
+   </dependency>
+  </dependencies>
+ </dependencyManagement>
 </project>
