@@ -1,5 +1,6 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.BoundedLineReader;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -1811,7 +1812,7 @@ public class RestServiceV2Test {
 			BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
 			String line = "";
-			while ((line = rd.readLine()) != null) {
+			while ((line = BoundedLineReader.readLine(rd, 5_000_000)) != null) {
 				result.append(line);
 			}
 		}

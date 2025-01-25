@@ -1,5 +1,6 @@
 package io.antmedia;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -832,7 +833,7 @@ public class AntMediaApplicationAdapter implements IAntMediaStreamHandler, IShut
 					String inputLine;
 					response = new StringBuilder();
 	
-					while ((inputLine = reader.readLine()) != null) {
+					while ((inputLine = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
 						response.append(inputLine);
 					}
 					reader.close();
