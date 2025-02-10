@@ -1,5 +1,7 @@
 package io.antmedia.streamsource;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -178,7 +180,7 @@ public class StreamFetcherManager {
 		int responseCode;
 
 		try {
-			checkUrl = new URL(url);
+			checkUrl = Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 			huc = (HttpURLConnection) checkUrl.openConnection();
 			responseCode = huc.getResponseCode();
 

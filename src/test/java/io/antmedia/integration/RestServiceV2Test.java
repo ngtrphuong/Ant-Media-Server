@@ -1,5 +1,7 @@
 package io.antmedia.integration;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -1917,7 +1919,7 @@ public class RestServiceV2Test {
 
 	private boolean isUrlExist(String url) {
 		try {
-			return ((HttpURLConnection) new URL(url).openConnection()).getResponseCode() == 200;
+			return ((HttpURLConnection) Urls.create(url, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection()).getResponseCode() == 200;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
